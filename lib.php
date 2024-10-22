@@ -186,7 +186,7 @@ function local_custompage_after_config() {
     ];
 
     if (isset($CFG->custom_context_classes)) {
-        $CFG->custom_context_classes = array_merge($CFG->custom_context_classes, $customcontextclasses);
+        $CFG->custom_context_classes = $CFG->custom_context_classes + $customcontextclasses;
     } else {
         $CFG->custom_context_classes = $customcontextclasses;
     }
