@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+declare(strict_types=1);
+
 namespace local_custompage\custom_context;
 
 use coding_exception;
@@ -21,6 +23,7 @@ use context;
 use moodle_url;
 use stdClass;
 
+define('CONTEXT_CUSTOMPAGE', 75);
 
 /**
  *  context_custompage.php description here.

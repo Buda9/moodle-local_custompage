@@ -22,6 +22,8 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+declare(strict_types=1);
+
 namespace local_custompage\reportbuilder\local\entities;
 
 use core_collator;
@@ -40,21 +42,27 @@ class custompages extends base {
      * default table alias getter
      * @return string[]
      */
-    protected function get_default_table_aliases(): array {
-        return ['local_custompages' => 'cp'];
+    protected function get_default_tables(): array {
+        return [
+            'local_custompages' => 'cp',
+        ];
     }
+
     /**
      * entity title getter
      * @return lang_string
      */
-    protected function get_default_entity_title(): lang_string {
-        return new lang_string('entitycustompages', 'local_custompage');
+    protected function get_default_entity_title(): string {
+        return get_string('custompages', 'local_custompage');
     }
+
     /**
      * entity initialiser
      * @return base
      */
     public function initialise(): base {
+        $tablealias = $this->get_table_alias('local_custompages');
+        
         $columns = $this->get_all_columns();
         foreach ($columns as $column) {
             $this->add_column($column);
@@ -63,9 +71,7 @@ class custompages extends base {
         // All the filters defined by the entity can also be used as conditions.
         $filters = $this->get_all_filters();
         foreach ($filters as $filter) {
-            $this
-                ->add_filter($filter)
-                ->add_condition($filter);
+            $this->add_filter($filter);
         }
 
         return $this;
